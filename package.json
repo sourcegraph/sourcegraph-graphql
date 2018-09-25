@@ -5,7 +5,7 @@
   "description": "GraphQL code intelligence.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sourcegraph/sourcegraph-token-highlights.git"
+    "url": "https://github.com/sourcegraph/sourcegraph-graphql.git"
   },
   "activationEvents": [
     "*"
