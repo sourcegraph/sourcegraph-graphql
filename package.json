@@ -1,0 +1,25 @@
+{
+  "name": "graphql",
+  "publisher": "chris",
+  "title": "GraphQL",
+  "description": "GraphQL code intelligence.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcegraph/sourcegraph-token-highlights.git"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "dist/extension.js",
+  "scripts": {
+    "sourcegraph:prepublish": "parcel build src/extension.ts"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.9.7",
+    "sourcegraph": "^16.0.0",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "vscode-ws-jsonrpc": "^0.0.1-alpha.5"
+  }
+}
