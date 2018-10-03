@@ -1,25 +1,11 @@
 import * as sourcegraph from 'sourcegraph'
-import * as rpc from 'vscode-ws-jsonrpc'
-import { BehaviorSubject, Unsubscribable, Subscription, EMPTY, of } from 'rxjs'
-import { map, switchMap, distinct, distinctUntilChanged } from 'rxjs/operators'
+import { ajax } from 'rxjs/ajax'
 
 interface FullSettings {
     'graphql.langserver-address': string
 }
 
 type Settings = Partial<FullSettings>
-
-function connectTo(address: string): Promise<rpc.MessageConnection> {
-    return new Promise(resolve => {
-        const webSocket = new WebSocket(address)
-        rpc.listen({
-            webSocket,
-            onConnection: (connection: rpc.MessageConnection) => {
-                resolve(connection)
-            },
-        })
-    })
-}
 
 export function activate(): void {
     function afterActivate() {
@@ -29,42 +15,68 @@ export function activate(): void {
             return
         }
 
-        connectTo(address).then((connection: rpc.MessageConnection) => {
-            connection.listen()
+        const docSelector = [{ pattern: '*.{graphql,gql,schema}' }]
 
-            const docSelector = [{ pattern: '*.{graphql,gql,schema}' }]
-
-            sourcegraph.languages.registerHoverProvider(docSelector, {
-                provideHover: async (doc, pos) => {
-                    return connection.sendRequest<sourcegraph.Hover>('hover', doc, pos).then(hover => {
+        sourcegraph.languages.registerHoverProvider(docSelector, {
+            provideHover: async (doc, pos) => {
+                return ajax({
+                    method: 'POST',
+                    url: address,
+                    body: JSON.stringify({ method: 'hover', doc, pos }),
+                    responseType: 'json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .toPromise()
+                    .then(response => {
                         return (
-                            hover && {
+                            response &&
+                            response.response &&
+                            response.response.contents && {
                                 contents: {
-                                    value: '```python\n' + (hover.contents as any).join('\n') + '\n```',
+                                    // python syntax highlighting works pretty well for GraphQL
+                                    value: '```python\n' + response.response.contents.join('\n') + '\n```',
                                     kind: sourcegraph.MarkupKind.Markdown,
                                 },
                             }
                         )
                     })
-                },
-            })
+            },
+        })
 
-            sourcegraph.languages.registerDefinitionProvider(docSelector, {
-                provideDefinition: async (doc, pos) => {
-                    return connection.sendRequest<any>('definition', doc, pos).then(definition => {
+        sourcegraph.languages.registerDefinitionProvider(docSelector, {
+            provideDefinition: async (doc, pos) => {
+                return ajax({
+                    method: 'POST',
+                    url: address,
+                    body: JSON.stringify({ method: 'definition', doc, pos }),
+                    responseType: 'json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .toPromise()
+                    .then(response => {
                         return (
-                            definition &&
+                            response &&
+                            response.response.definition &&
                             new sourcegraph.Location(
                                 new sourcegraph.URI(doc.uri),
                                 new sourcegraph.Range(
-                                    new sourcegraph.Position(definition.start.line, definition.start.character),
-                                    new sourcegraph.Position(definition.end.line, definition.end.character)
+                                    new sourcegraph.Position(
+                                        response.response.definition.start.line,
+                                        response.response.definition.start.character
+                                    ),
+                                    new sourcegraph.Position(
+                                        response.response.definition.end.line,
+                                        response.response.definition.end.character
+                                    )
                                 )
                             )
                         )
                     })
-                },
-            })
+            },
         })
     }
     // Error creating extension host: Error: Configuration is not yet available.
