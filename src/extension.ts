@@ -60,17 +60,17 @@ export function activate(): void {
                     .then(response => {
                         return (
                             response &&
-                            response.response.definition &&
+                            response.response &&
                             new sourcegraph.Location(
                                 new sourcegraph.URI(doc.uri),
                                 new sourcegraph.Range(
                                     new sourcegraph.Position(
-                                        response.response.definition.start.line,
-                                        response.response.definition.start.character
+                                        response.response.start.line,
+                                        response.response.start.character
                                     ),
                                     new sourcegraph.Position(
-                                        response.response.definition.end.line,
-                                        response.response.definition.end.character
+                                        response.response.end.line,
+                                        response.response.end.character
                                     )
                                 )
                             )
