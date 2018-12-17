@@ -4415,13 +4415,10 @@ source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-sourcegraph@^16.0.0:
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/sourcegraph/-/sourcegraph-16.0.1.tgz#e782f0e0d928df4fa0c723f5861e69549e4dfa3c"
-  integrity sha512-rIeunYTGjWn5I4j0n32SVlHgyn+N67l9SwVg8uVxrMGwtPB2mvry/IwVcc5F2KDX9TSDp6uqoQOY8488CLTVUA==
-  dependencies:
-    minimatch "^3.0.4"
-    rxjs "^6.3.2"
+sourcegraph@^20.0.0:
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/sourcegraph/-/sourcegraph-20.0.0.tgz#7828fa7f8383a3631e7d4f12a6c8468ba6ba2dd3"
+  integrity sha512-9wCLAIwbMIiG0KfftvRjvsHuCyRsOIk9/Kun1ULusVLnuM6Y/6VC2vrcx3Gk3YHudAwcd5xEA1LYraiNGmbuvQ==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
