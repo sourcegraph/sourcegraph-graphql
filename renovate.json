@@ -1,5 +1,4 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "$schema": "http://json.schemastore.org/renovate",
+  "extends": ["github>sourcegraph/renovate-config"]
 }
