@@ -4875,17 +4875,17 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vscode-jsonrpc@^3.3.0:
-  version "3.6.2"
-  resolved "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-3.6.2.tgz#3b5eef691159a15556ecc500e9a8a0dd143470c8"
-  integrity sha512-T24Jb5V48e4VgYliUXMnZ379ItbrXgOimweKaJshD84z+8q7ZOZjJan0MeDe+Ugb+uqERDVV8SBmemaGMSMugA==
+vscode-jsonrpc@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-4.0.0.tgz#a7bf74ef3254d0a0c272fab15c82128e378b3be9"
+  integrity sha512-perEnXQdQOJMTDFNv+UF3h1Y0z4iSiaN9jIlb0OqIYgosPCZGYh/MCUlkFtV2668PL69lRDO32hmvL2yiidUYg==
 
-vscode-ws-jsonrpc@^0.0.1-alpha.5:
-  version "0.0.1-alpha.5"
-  resolved "https://registry.npmjs.org/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-0.0.1-alpha.5.tgz#1ca66667940b5b19730a6a1d6150be506a808c61"
-  integrity sha1-HKZmZ5QLWxlzCmodYVC+UGqAjGE=
+vscode-ws-jsonrpc@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-0.0.3.tgz#090e2d324010c5bd2b4a94f21188431aa13eecf2"
+  integrity sha512-qf7uCmBwMuDXdjMERbpdyJe2296TteggeG6J/f6X2r2KVIJUDwxqlrqaW7Ru1OZsA2OgtNPFV1ig9gz8cnchsw==
   dependencies:
-    vscode-jsonrpc "^3.3.0"
+    vscode-jsonrpc "^4.0.0"
 
 wcwidth@^1.0.1:
   version "1.0.1"

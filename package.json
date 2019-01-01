@@ -22,6 +22,6 @@
   "dependencies": {
     "@sourcegraph/prettierrc": "^2.2.0",
     "rxjs": "^6.3.2",
-    "vscode-ws-jsonrpc": "^0.0.1-alpha.5"
+    "vscode-ws-jsonrpc": "^0.0.3"
   }
 }
