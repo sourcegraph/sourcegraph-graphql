@@ -17,7 +17,7 @@
   "devDependencies": {
     "parcel-bundler": "^1.10.0",
     "sourcegraph": "^20.1.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.7.5"
   },
   "dependencies": {
     "@sourcegraph/prettierrc": "^2.2.0",
